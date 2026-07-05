@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #c8c0b0 transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #c8c0b0;
+    border-radius: 10px;
+  }
+  body {
+    @apply bg-paper-bg text-ink font-xiuxian antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* 宣纸纹理底纹 */
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(184, 134, 11, 0.02) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(122, 114, 98, 0.02) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(184, 134, 11, 0.015) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  /* ━━━ 古卷卡片 ━━━ */
+  .card {
+    @apply bg-paper-card border-4 border-double border-[#d4cbb3] rounded-2xl shadow-card
+           transition-all duration-300;
+    background-image: linear-gradient(
+      135deg,
+      rgba(184, 134, 11, 0.02) 0%,
+      rgba(255, 254, 249, 0.98) 40%,
+      rgba(255, 254, 249, 0.98) 60%,
+      rgba(184, 134, 11, 0.015) 100%
+    );
+  }
+  .card:hover {
+    @apply shadow-card-hover;
+  }
+  .card-interactive {
+    @apply card cursor-pointer;
+  }
+  .card-interactive:hover {
+    @apply shadow-card-hover -translate-y-0.5;
+  }
+
+  /* ━━━ 古风按钮 ━━━ */
+  .btn-primary {
+    @apply px-5 py-2.5 text-sm font-medium rounded-xl
+           active:scale-[0.98] transition-all duration-200 shadow-sm;
+    background: linear-gradient(135deg, #c49520 0%, #9a6f0a 100%);
+    color: #fff;
+    border: 1px solid rgba(184, 134, 11, 0.3);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #d4a530 0%, #b8860b 100%);
+    box-shadow: 0 2px 8px rgba(184, 134, 11, 0.25);
+  }
+  .btn-danger {
+    @apply px-5 py-2.5 text-sm font-medium rounded-xl
+           active:scale-[0.98] transition-all duration-200 shadow-sm;
+    background: linear-gradient(135deg, #c44b4b 0%, #8e2323 100%);
+    color: #fff;
+    border: 1px solid rgba(176, 52, 52, 0.3);
+  }
+  .btn-danger:hover {
+    background: linear-gradient(135deg, #d45555 0%, #b03434 100%);
+  }
+  .btn-ghost {
+    @apply px-4 py-2 text-ink-secondary text-sm rounded-xl
+           hover:bg-paper-muted transition-colors duration-200;
+  }
+
+  /* ━━━ 输入框 ━━━ */
+  .input {
+    @apply w-full px-4 py-2.5 bg-[#FAF7ED] border border-[#d4cbb3] rounded-xl
+           text-ink text-sm placeholder:text-ink-subtle
+           focus:outline-none focus:border-divine-gold-500 focus:ring-4 focus:ring-divine-gold-500/10
+           transition-all duration-200;
+  }
+  .textarea {
+    @apply input resize-y min-h-[80px];
+  }
+
+  /* ━━━ 标签页 ━━━ */
+  .tab {
+    @apply px-5 py-3 text-sm font-medium border-b-2 transition-colors duration-200;
+  }
+  .tab-active {
+    @apply border-divine-gold-500 text-divine-gold-600;
+  }
+  .tab-inactive {
+    @apply border-transparent text-ink-subtle hover:text-ink-secondary;
+  }
+
+  /* ━━━ 毛玻璃导航 ━━━ */
+  .nav-glass {
+    @apply bg-white/70 backdrop-blur-nav shadow-nav-glass border-r border-paper-border;
+    background-image: linear-gradient(
+      180deg,
+      rgba(255, 254, 249, 0.9) 0%,
+      rgba(240, 237, 229, 0.85) 100%
+    );
+  }
+
+  /* ━━━ 胶囊按钮 ━━━ */
+  .pill {
+    @apply px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-200
+           select-none;
+  }
+  .pill-inactive {
+    @apply border-paper-border text-ink-secondary bg-white hover:border-divine-gold-400 hover:text-divine-gold-600;
+  }
+  .pill-active {
+    @apply text-white shadow-sm;
+    background: linear-gradient(135deg, #c49520 0%, #9a6f0a 100%);
+    border-color: #b8860b;
+  }
+
+  /* ━━━ 古风装饰线 ━━━ */
+  .divider-ancient {
+    @apply flex items-center gap-3 my-4;
+  }
+  .divider-ancient::before,
+  .divider-ancient::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #ddd8cc 50%, transparent 100%);
+  }
+  .divider-ancient span {
+    @apply text-xs text-ink-subtle;
+  }
+}
